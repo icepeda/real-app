@@ -1,31 +1,28 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar class="ion-text-center">
     <ion-title>
-      User List
+     RealApp
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200"  (ionRefresh)="fetchUsers($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+ 
   <ion-list>
-    <ion-item button detail (click)="goToUserDetails()">
+    <ion-list-header lines="inset">
+      <ion-label>List Of Users</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let user of usersList" button detail (click)="goToUserDetails(user)">
       <ion-icon name="person-circle-outline" slot="start"></ion-icon>
-      <ion-label>Leanne Graham</ion-label>
-    </ion-item>
-  
-    <ion-item button detail>
-      <ion-icon name="person-circle-outline" slot="start"></ion-icon>
-      <ion-label>Leanne Graham</ion-label>
-    </ion-item>
-  
-    <ion-item button detail>
-      <ion-icon name="person-circle-outline" slot="start"></ion-icon>
-      <ion-label>Leanne Graham</ion-label>
-    </ion-item>
-  
-    <ion-item button detail>
-      <ion-icon name="person-circle-outline" slot="start"></ion-icon>
-      <ion-label>Leanne Graham</ion-label>
+      <ion-label>{{user.name}}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

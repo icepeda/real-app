@@ -1,0 +1,15 @@
+
+
+.form ion-item{
+    --background: var(--custom-ion-icon-color);;
+    border-radius: 20px;
+    margin: 20px;
+
+    ion-label{
+        color: #EE2990;
+    }
+
+    ion-input{
+        color: #000000;
+    }
+}

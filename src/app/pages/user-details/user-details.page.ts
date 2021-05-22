@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { IUser } from 'src/app/models/user';
 
 @Component({
   selector: 'app-user-details',
@@ -7,7 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDetailsPage implements OnInit {
 
-  constructor() { }
+  user: IUser;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+  ) { 
+
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params["user"] !== undefined) {
+        this.user = JSON.parse(params["user"]);
+      }
+    });
+  }
 
   ngOnInit() {
   }

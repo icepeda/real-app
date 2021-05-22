@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
+import { LoadingController, NavController } from '@ionic/angular';
+import { IUser } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user',
@@ -8,13 +11,43 @@ import { NavController } from '@ionic/angular';
 })
 export class UserPage implements OnInit {
 
-  constructor(private navController: NavController) { }
+  usersList: Array<IUser>;
+  constructor(private navController: NavController, private userService: UserService,  private loadingController: LoadingController,) { }
 
   ngOnInit() {
+    this.fetchUsers(null);
   }
 
+  goToUserDetails(user: IUser){
 
-  goToUserDetails(){
-    this.navController.navigateForward(['/user-details']);
+    const navigationExtras: NavigationExtras = {
+			queryParams: {
+				user: JSON.stringify(user)
+			},
+		};
+
+    this.navController.navigateForward(['/user-details'], navigationExtras);
+  }
+
+  fetchUsers(event){
+
+    this.loadingController.create({
+      cssClass: 'transparent',
+      showBackdrop: false
+    }).then((loader) => {
+      loader.present();
+      
+    this.userService.getUsers().subscribe(users => {
+      
+      this.usersList = users;
+
+      if(event){
+			  event.target.complete();
+      }
+      loader.dismiss();
+    }, (err) => {
+      loader.dismiss();
+    });
+  });
   }
 }

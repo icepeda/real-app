@@ -9,11 +9,12 @@
 
 <ion-content>
 
-  <ion-item class="ion-text-center" lines="none">
-    <ion-label>{{user.name}}</ion-label>
-  </ion-item>
 
   <div class="form">
+    <ion-item>
+      <ion-label position="stacked">Name</ion-label>
+      <ion-input readonly>{{user.name}}</ion-input>
+    </ion-item>
     <ion-item>
       <ion-label position="stacked">Username</ion-label>
       <ion-input readonly>{{user.username}}</ion-input>
@@ -23,24 +24,28 @@
       <ion-input readonly>{{user.email}}</ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Address</ion-label>
-      <ion-input readonly>{{user.address.street}}</ion-input>
-      <ion-input readonly>{{user.address.suite}}</ion-input>
-      <ion-input readonly>{{user.address.city}}</ion-input>
-      <ion-input readonly>{{user.address.zipcode}}</ion-input>
-    </ion-item>
-    <ion-item>
       <ion-label position="stacked">Phone</ion-label>
       <ion-input readonly>{{user.phone}}</ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Website</ion-label>
-      <ion-input readonly>{{user.company.name}}</ion-input>
+      <ion-input readonly>{{user.website}}</ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Company</ion-label>
+      <ion-input readonly>{{user.company.name}}</ion-input>
       <ion-input readonly>{{user.company.catchPhrase}}</ion-input>
       <ion-input readonly>{{user.company.bs}}</ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Address</ion-label>
+      <ion-input readonly>{{user.address.street}}</ion-input>
+      <ion-input readonly>{{user.address.suite}}</ion-input>
+      <ion-input readonly>{{user.address.city}}</ion-input>
+      <ion-input readonly>{{user.address.zipcode}}</ion-input>
+        <div #map id="map"></div>
+  
     </ion-item>
   </div>
 

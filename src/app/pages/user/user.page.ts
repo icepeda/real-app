@@ -12,7 +12,8 @@ import { UserService } from 'src/app/services/user.service';
 export class UserPage implements OnInit {
 
   usersList: Array<IUser>;
-  constructor(private navController: NavController, private userService: UserService,  private loadingController: LoadingController,) { }
+  
+  constructor(private navController: NavController, private userService: UserService,  private loadingController: LoadingController) { }
 
   ngOnInit() {
     this.fetchUsers(null);
@@ -44,8 +45,14 @@ export class UserPage implements OnInit {
       if(event){
 			  event.target.complete();
       }
+
       loader.dismiss();
     }, (err) => {
+
+      if(event){
+			  event.target.complete();
+      }
+
       loader.dismiss();
     });
   });
